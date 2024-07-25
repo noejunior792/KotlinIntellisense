@@ -1,6 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.6.0"
-    application
+    kotlin("jvm") version "1.5.30"
 }
 
 group = "com.example"
@@ -19,12 +18,9 @@ tasks.test {
     useJUnitPlatform()
 }
 
-application {
-    mainClass.set("com.example.KotlinIntellisenseKt")
-}
-
 tasks.jar {
     manifest {
-        attributes["Main-Class"] = "com.example.KotlinIntellisenseKt"
+        attributes["Main-Class"] = "com.example.MainKt"
     }
+    from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
 }
